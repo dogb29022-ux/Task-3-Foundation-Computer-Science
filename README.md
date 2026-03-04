@@ -16,6 +16,7 @@ CREATE DATABASE IF NOT EXISTS club_db;
 <img src="/diagrams/feeding rawdata.png" height="300" width="300">
 
 **expected output**
+
 <img src="/diagrams/unnormalized table.png" height="300" width="300">
 
 ### Second Normal Form
