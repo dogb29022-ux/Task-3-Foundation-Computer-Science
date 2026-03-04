@@ -111,6 +111,9 @@ JOIN Clubs_3NF c ON m.ClubName = c.ClubName;
 <img src="/diagrams/student&apos;s table.png" height="300" width="500">
 
 ## E-R Diagram
+The logical structure utilized in the Normalization is shown graphically by the E-R diagram.This is the normalized database's E-R diagram.
+
+<img src="/diagrams/e-r diagram.png" height="300" width="500">
 
 ## Basic Operation
 To verify the integrity of our 3NF schema, we perform standard CRUD (Create, Read, Update, Delete) operations.
