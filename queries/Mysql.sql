@@ -48,7 +48,7 @@ CREATE TABLE Mentors_3NF (
 INSERT INTO Mentors_3NF (MentorName) 
 SELECT DISTINCT ClubMentor FROM Clubs_2NF;
 
--- 3b. Final Clubs Table (Foreign key to Mentors) [cite: 96]
+-- 3b. Final Clubs Table (Foreign key to Mentors)
 CREATE TABLE Clubs_3NF (
     ClubID INT AUTO_INCREMENT PRIMARY KEY,
     ClubName VARCHAR(100),
