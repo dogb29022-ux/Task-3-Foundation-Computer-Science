@@ -1,17 +1,17 @@
 # Task-3-Foundation-Computer-Science
-## overview
+## Overview
 Through the lens of database normalization, this project illustrates the core ideas of Relational Database Management Systems (RDBMS). The main objective is to create a structured, effective, and anomaly-free Third Normal Form (3NF) database from a "flat" unnormalized dataset that is representative of raw club membership records. We reduce redundancy and guarantee data integrity by separating entities like students, clubs, and mentors.
 
 ## Features
-Step-by-Step Normalization: Practical implementation of 1NF, 2NF, and 3NF using MySQL.
+* Step-by-Step Normalization: Practical implementation of 1NF, 2NF, and 3NF using MySQL.
 
-Relational Integrity: Implementation of Primary and Foreign Key constraints to maintain data consistency.
+* Relational Integrity: Implementation of Primary and Foreign Key constraints to maintain data consistency.
 
-Data Transformation: Utilization of STR_TO_DATE and JOIN operations to sanitize and query data.
+* Data Transformation: Utilization of STR_TO_DATE and JOIN operations to sanitize and query data.
 
-Scalability: A modular architecture that allows for independent updates to student, mentor, or club details without affecting global records.
+* Scalability: A modular architecture that allows for independent updates to student, mentor, or club details without affecting global records.
 
-## Learning Outcome
+## Learning Outcomes
 By completing this task, I have gained proficiency in:
 
 * Logical Modeling: Identifying functional dependencies and transitive dependencies.
@@ -25,16 +25,16 @@ Normalization is the process of organizing data to reduce duplication. We begin 
 ```sql
 CREATE DATABASE IF NOT EXISTS club_db;
 ```
-**Expectecd Output**
+* **Expected Output**
 
-<img src="/diagrams/CREATE.png" height="300" width="300">
+<img src="/diagrams/CREATE.png" height="300" width="500">
 
-**Queries to create unnormalized table**
+* **Queries to create unnormalized table**
 Every piece of information is contained in a single table in the raw data. When a student joins a group, for example, the mentor's name is repeated, resulting in redundant information.
 
-<img src="/diagrams/feeding rawdata.png" height="300" width="300">
+<img src="/diagrams/feeding rawdata.png" height="300" width="500">
 
-**expected output**
+* **expected output**
 
 <img src="/diagrams/unnormalized table.png" height="400" width="700">
 
@@ -50,17 +50,17 @@ SELECT DISTINCT ClubName, ClubRoom, ClubMentor FROM RawData;
 CREATE TABLE Memberships_2NF AS 
 SELECT StudentID, ClubName, STR_TO_DATE(JoinDate, '%m/%d/%Y') as JoinDate FROM RawData;
 ```
-**Table of students**
+* **Table of students**
 
-<img src="/diagrams/student&apos;s table.png" height="300" width="300">
+<img src="/diagrams/student&apos;s table.png" height="300" width="500">
 
-**Table of membership**
+* **Table of membership**
 
-<img src="/diagrams/membership table.png" height="300" width="300">
+<img src="/diagrams/membership table.png" height="300" width="500">
 
-**Table of Club**
+* **Table of Club**
 
-<img src="/diagrams/club table.png" height="300" width="300">
+<img src="/diagrams/club table.png" height="300" width="500">
 
 ### Third Normal Form
 In 2NF, the ClubRoom and ClubMentor are still tied to the ClubName. However, a Transitive Dependency exists if a mentor's details depend on the club rather than the student. In 3NF, we move the Mentor into their own table.
@@ -96,39 +96,39 @@ SELECT m.StudentID, c.ClubID, m.JoinDate
 FROM Memberships_2NF m
 JOIN Clubs_3NF c ON m.ClubName = c.ClubName;
 ```
-**expected output**
+* **expected output**
 
-**3NF Table for Mentors**
+* **3NF Table for Mentors**
 
-<img src="/diagrams/mentors3nf.png" height="300" width="300">
+<img src="/diagrams/mentors3nf.png" height="300" width="500">
 
-**3NF Table for Memberships**
+* **3NF Table for Memberships**
 
-<img src="/diagrams/student&apos;s table.png" height="300" width="300">
+<img src="/diagrams/student&apos;s table.png" height="300" width="500">
 
-**3NF Table for Club**
+* **3NF Table for Club**
 
-<img src="/diagrams/student&apos;s table.png" height="300" width="300">
+<img src="/diagrams/student&apos;s table.png" height="300" width="500">
 
 ## E-R Diagram
 
-## basic operation
+## Basic Operation
 To verify the integrity of our 3NF schema, we perform standard CRUD (Create, Read, Update, Delete) operations.
 
 By adding a new student to the students table, we will test the database. "Shreejan" will be added as a new student with studentID=9 and email=shreejan_2@gmail.com.
 ```sql
  INSERT INTO Students_2NF (StudentID, StudentName, Email) VALUES (9, 'Shreejan', 'shreejan_2@gmail.com');
 ```
-<img src="/diagrams/adding data on student_2NF.png" height="300" width="300">
+<img src="/diagrams/adding data on student_2NF.png" height="300" width="500">
 
 Additionally, a new club will be added to the Club table. Dance Club will be the club name, "R105" will be the clubroom, and 5 will be the clubID and mentorID, respectively.
 
-<img src="/diagrams/new club added.png" height="300" width="300">
+<img src="/diagrams/new club added.png" height="300" width="500">
 
-## join operation
+## Join Operation
 All three tables will be joined here, and only StudentName, ClubName, and JoinDate will be displayed. This table then looks like this:
 
-<img src="/diagrams/JOIN TABLE.png" height="300" width="300">
+<img src="/diagrams/JOIN TABLE.png" height="300" width="500">
 
 ## Quick Start
 ```bash
@@ -136,8 +136,29 @@ All three tables will be joined here, and only StudentName, ClubName, and JoinDa
 git clone https://github.com/dogb29022-ux/Task-3-Foundation-Computer-Science.git
 cd Task-3-Foundation-Computer-Science
 ```
-## usage and setup
-## project structure
+## Usage and Setup
+## Tools used
+* Docker
+* Myql
+## Step to create a Mysql server in the docker for normalisation.
+### Step 1: we have to pull the image of mysql in the docker.
+We must first launch Powershell or CMD and run Docker in the background in order to accomplish that. The following command must then be entered into the CMD.
+```sql
+docker pull mysql:8.0
+```
+### Step 2: Running the image in the docker:
+We must execute the image in the Docker after pulling it:
+```sql
+ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root --name mysql mysql:8.0
+```
+### Step 3: Executing the mysql
+We must execute the image after it has been run. This command must be entered in order to do that:
+```sql
+ docker exec -it mysql mysql -u root -p
+```
+<img src="/diagrams/executing mysql.png" height="300" width="500">
+
+## Project Structure
 ```sql
 Task-3-Foundation-Computer-Science/
 ├── data/                       # Raw datasets and source files
