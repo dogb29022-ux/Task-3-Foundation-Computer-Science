@@ -86,6 +86,7 @@ JOIN Clubs_3NF c ON m.ClubName = c.ClubName;
 <img src="/diagrams/student&apos;s table.png" height="300" width="300">
 
 **3NF Table for Club**
+
 <img src="/diagrams/student&apos;s table.png" height="300" width="300">
 
 ## basic operation
