@@ -96,7 +96,7 @@ SELECT m.StudentID, c.ClubID, m.JoinDate
 FROM Memberships_2NF m
 JOIN Clubs_3NF c ON m.ClubName = c.ClubName;
 ```
-* **expected output**
+* **Expected Output**
 
 * **3NF Table for Mentors**
 
